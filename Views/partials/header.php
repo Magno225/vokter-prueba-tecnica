@@ -62,10 +62,10 @@ if (isset($_SESSION['usuario_id'])) {
     border-bottom: 1px solid var(--border-subtle);
   }
 
-  .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-white); }
+  .logo { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-white); }
   .logo a {color: var(--text-white); text-decoration: none;}
-  nav ul { list-style: none; display: flex; align-items: center; gap: 54px; }
-  nav a { color: var(--text-white); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+  nav ul { list-style: none; display: flex; align-items: center; gap: 85px; }
+  nav a { color: var(--text-white); text-decoration: none; font-size: 1.2rem; font-weight: 600; }
   nav a:hover { color: var(--blue-light); }
 
   .nav-icons { display: flex; align-items: center; gap: 22px; }
