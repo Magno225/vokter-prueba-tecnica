@@ -34,4 +34,39 @@ class UsuarioController {
 
         return ['exito' => true];
     }
+
+    public function obtenerDatos($id) {
+    return $this->usuarioModel->obtenerPorId($id);
+}
+
+public function actualizarPerfil($id, $nombre, $apellido, $correo, $telefono) {
+    $usuarioConEseCorreo = $this->usuarioModel->obtenerPorCorreo($correo);
+    if ($usuarioConEseCorreo && $usuarioConEseCorreo['id'] != $id) {
+        return ['exito' => false, 'mensaje' => 'Ese correo ya está en uso por otra cuenta.'];
+    }
+
+    $actualizado = $this->usuarioModel->actualizarDatos($id, $nombre, $apellido, $correo, $telefono);
+
+    if ($actualizado) {
+        return ['exito' => true, 'mensaje' => 'Datos actualizados correctamente.'];
+    }
+    return ['exito' => false, 'mensaje' => 'Ocurrió un error al actualizar tus datos.'];
+}
+
+public function cambiarPassword($id, $passwordActual, $passwordNueva) {
+    $usuario = $this->usuarioModel->obtenerPorId($id);
+
+    if (!$usuario || !password_verify($passwordActual, $usuario['password_hash'])) {
+        return ['exito' => false, 'mensaje' => 'La contraseña actual no es correcta.'];
+    }
+
+    $hash = password_hash($passwordNueva, PASSWORD_DEFAULT);
+    $actualizado = $this->usuarioModel->actualizarPassword($id, $hash);
+
+    if ($actualizado) {
+        return ['exito' => true, 'mensaje' => 'Contraseña actualizada correctamente.'];
+    }
+    return ['exito' => false, 'mensaje' => 'Ocurrió un error al cambiar la contraseña.'];
+}
+
 }

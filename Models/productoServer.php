@@ -46,13 +46,51 @@ class Producto {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function buscarPorPalabra($palabra) {
-        $query = "SELECT * FROM " . $this->table . " WHERE nombre LIKE :palabra AND activo = 1";
-        $stmt = $this->conn->prepare($query);
-        $busqueda = '%' . $palabra . '%';
-        $stmt->bindParam(':palabra', $busqueda, PDO::PARAM_STR);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   public function buscarPorPalabra($palabra) {
+    // Diccionario de sinónimos: la clave es lo que el usuario puede escribir,
+    // el valor es la lista de palabras reales que existen en los nombres de productos.
+    $sinonimos = [
+        'zapatos'   => ['tenis', 'bota', 'botas'],        
+        'calzado'   => ['tenis', 'bota', 'botas'],
+        'sudadera'  => ['conjunto'],
+        'ropa'  => ['conjunto'],
+        'sudaderas' => ['conjunto'],
+        'audifonos' => ['audifono', 'audífonos', 'audífono', 'diadema', 'diademas'],
+        'celular'   => ['telefono', 'smartphone'],
+        // Agrega aquí más equivalencias a medida que las identifiques
+    ];
+
+    $palabraNormalizada = strtolower(trim($palabra));
+
+    // Empezamos con la palabra original que escribió el usuario
+    $terminos = [$palabraNormalizada];
+
+    // Si esa palabra tiene sinónimos registrados, los agregamos a la lista
+    if (isset($sinonimos[$palabraNormalizada])) {
+        $terminos = array_merge($terminos, $sinonimos[$palabraNormalizada]);
+    }
+
+    // Construimos dinámicamente: nombre LIKE :t0 OR nombre LIKE :t1 OR ...
+    $condiciones = [];
+    $parametros = [];
+    foreach ($terminos as $indice => $termino) {
+        $marcador = ':termino' . $indice;
+        $condiciones[] = "nombre LIKE $marcador";
+        $parametros[$marcador] = '%' . $termino . '%';
+    }
+
+    $query = "SELECT * FROM " . $this->table . "
+              WHERE (" . implode(' OR ', $condiciones) . ")
+              AND activo = 1";
+
+    $stmt = $this->conn->prepare($query);
+
+    foreach ($parametros as $marcador => $valor) {
+        $stmt->bindValue($marcador, $valor, PDO::PARAM_STR);
+    }
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 }
     

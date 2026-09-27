@@ -81,7 +81,8 @@ class ProductoController {
         $productos = $this->productoModel->buscarPorPalabra($palabra);
         $this->agregarImagenesYCalificacion($productos);
     return $productos;
-}
+    
+    }
 
     
 }

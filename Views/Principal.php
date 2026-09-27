@@ -150,6 +150,19 @@ $productos = $controller->listarTodos();
 }
 .sort-option:hover { color: var(--blue-accent); }
 
+.btn-primary{
+  background: #0c53e9;
+  color: #ffffff;
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px; 
+  font-weight: bold; 
+}
+
 </style>
 
 <section class="hero">

@@ -62,7 +62,8 @@ if (isset($_SESSION['usuario_id'])) {
     border-bottom: 1px solid var(--border-subtle);
   }
 
-  .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; }
+  .logo { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-white); }
+  .logo a {color: var(--text-white); text-decoration: none;}
   nav ul { list-style: none; display: flex; align-items: center; gap: 54px; }
   nav a { color: var(--text-white); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
   nav a:hover { color: var(--blue-light); }
@@ -86,6 +87,9 @@ if (isset($_SESSION['usuario_id'])) {
     width: 100%; padding: 12px 18px; border-radius: 24px; border: none;
     background: #ffffff; color: #111; font-size: 0.9rem; margin-bottom: 20px;
   }
+  .search-form {
+  display: contents;
+}
   .categories-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
   .categories-divider span { flex: 1; height: 1px; background: var(--border-subtle); }
   .categories-divider p {
@@ -130,7 +134,7 @@ if (isset($_SESSION['usuario_id'])) {
 
   <!-- ===================== HEADER ===================== -->
   <header>
-    <div class="logo">Vokter</div>
+    <div class="logo"><a href="Principal.php">Vokter</a></div>
     <nav>
       <ul>
         <li><a href="Principal.php">Inicio</a></li>
@@ -139,10 +143,7 @@ if (isset($_SESSION['usuario_id'])) {
         <li><a href="#">Lo más vendido</a></li>
         <li><a href="#">Lo mejor calificado</a></li>
         <li><a href="Promociones.php">Promociones</a></li>
-        <li><a href="#">Contactos</a></li>
-        <?php if (isset($_SESSION['usuario_id'])): ?>
-        <li><a href="/projectVokter/Views/MisCompras.php">Mis compras</a></li>
-        <?php endif; ?>
+        <li><a href="#">Contactos</a></li>      
       </ul>
     </nav>
 
@@ -150,8 +151,10 @@ if (isset($_SESSION['usuario_id'])) {
       <div class="search-menu">
         <img src="../Images/icons/lupa.png" class="nav-icon" alt="icono de Lupa." id="search-trigger">
         <div class="search-panel" id="search-panel">
-          
-          <input type="text" class="search-input" placeholder="Buscar productos...">
+          <form action="Buscar.php" method="GET" class="search-form">
+            <input type="text" name="q" class="search-input" placeholder="Buscar productos..." autocomplete="off" required>
+          </form>
+
           <div class="categories-divider"><span></span><p>Categorías</p><span></span></div>
           <div class="categories-grid">
             <div class="category-column">
@@ -166,11 +169,14 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
             <div class="category-column">
               <h4>Ropa</h4>
-              <ul><li>Sudaderas</li><li>Camisetas</li><li>Pantalones</li><li>Calzado</li></ul>
+              <ul><li><a href="Buscar.php?q=Conjunto Deportivo">Conjuntos Deportivos</a></li>             
+              <li><a href="Buscar.php?q=Tenis">Tenis</a></li>
+              <li><a href="Buscar.php?q=Bota">Botas</a></li>
+            </ul>
             </div>
             <div class="category-column">
               <h4>Hogar</h4>
-              <ul><li>Sábanas</li><li>Star Home</li></ul>
+              <ul><li><a href="Buscar.php?q=Sábanas">Sábanas</a></li></ul>
             </div>
           </div>
         </div>
@@ -187,20 +193,30 @@ if (isset($_SESSION['usuario_id'])) {
         <?php endif; ?>
       </a>
 
-      <div class="user-menu">
-        <button class="user-menu-trigger">
-          <img src="../Images/icons/avatar.png " class="nav-icon" alt="icono de usuario/avatar diponible a la vista en el header de la pg.">
-          <!--<span class="icon-placeholder"></span>-->
-          <span class="user-name">Hola, Alejandro</span>
-        </button>
-        <div class="user-dropdown">
-          <p class="dropdown-title">Categorías</p>
-          <ul class="dropdown-list">
-            <li><a href="#">Tecnología</a></li>
-            <li><a href="#">Ropa y Calzado</a></li>
-            <li><a href="#">Ideal para el hogar</a></li>
-          </ul>
-        </div>
-      </div>
+    <div class="user-menu">
+  <button class="user-menu-trigger">
+    <img src="../Images/icons/avatar.png " class="nav-icon" alt="icono de usuario/avatar diponible a la vista en el header de la pg.">
+    <span class="user-name">
+      <?php if (isset($_SESSION['usuario_id'])): ?>
+        Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>
+      <?php else: ?>
+        Usuario
+      <?php endif; ?>
+    </span>
+  </button>
+  <div class="user-dropdown">
+    <p class="dropdown-title">Categorías</p>
+    <ul class="dropdown-list">
+      <?php if (isset($_SESSION['usuario_id'])): ?>
+        <li><a href="Perfil.php">Mi perfil</a></li>
+        <li><a href="MisCompras.php">Mis compras</a></li>
+        <li><a href="/projectVokter/Views/Logout.php">Cerrar sesión</a></li>
+      <?php else: ?>
+        <li><a href="/projectVokter/Views/Login.php">Iniciar sesión</a></li>
+      <?php endif; ?>
+      <li><a href="#">Ideal para el hogar</a></li>
+    </ul>
+  </div>
+</div>
     </div>
   </header>

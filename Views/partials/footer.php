@@ -10,10 +10,10 @@
       <div class="footer-column">
         <h4>◻ Tienda</h4>
         <ul>
-          <li><a href="#">Todos los productos</a></li>
-          <li><a href="#">Footwear</a></li>
-          <li><a href="#">Tech & Gadgets</a></li>
-          <li><a href="#">Gear & Essentials</a></li>
+          <li><a href="Principal.php">Todos los productos</a></li>
+          <li><a href="RopaCalzado.php">Ropa & Calzado</a></li>
+          <li><a href="Tecnologia.php">Tenonología & Accesorios</a></li>
+          <li><a href="Hogar.php">Hogar</a></li>
         </ul>
       </div>
       <div class="footer-column">
@@ -35,8 +35,8 @@
             <img src="../Images/icons/tik-tok.png" class="nav-icon" alt="icono de tik-tok.">
           </a>
         </div>
-        <h4>◻ Newsletter</h4>
-        <p class="newsletter-text">Suscríbete para recibir drops exclusivos.</p>
+        <h4>◻ Boletín informativo</h4>
+        <p class="newsletter-text">Suscríbete para recibir ofertas exclusivas.</p>
         <div class="newsletter-form">
           <input type="email" placeholder="tu@email.com" class="newsletter-input">
           <button class="btn-subscribe">SUSCRIBIR</button>
@@ -58,7 +58,7 @@
 
   <style>
     /* ===================== FOOTER (estilos) ===================== */
-    .site-footer { background: var(--bg-hero); color: var(--text-white); padding: 50px 48px 30px; }
+    .site-footer { background: var(--bg-hero); color: var(--text-white); padding: 50px 48px 30px; margin-top: auto;}
     .footer-top { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.3fr; gap: 32px; margin-bottom: 40px; }
     .footer-logo .logo { color: var(--blue-light); font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; }
     .footer-description { color: var(--text-gray); font-size: 0.85rem; line-height: 1.6; margin-top: 14px; max-width: 280px; }

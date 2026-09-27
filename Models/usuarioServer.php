@@ -28,4 +28,34 @@ class Usuario {
         $stmt->bindParam(':telefono', $telefono);
         return $stmt->execute();
     }
+
+    public function obtenerPorId($id) {
+    $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function actualizarDatos($id, $nombre, $apellido, $correo, $telefono) {
+    $query = "UPDATE " . $this->table . "
+              SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono
+              WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':apellido', $apellido);
+    $stmt->bindParam(':correo', $correo);
+    $stmt->bindParam(':telefono', $telefono);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+public function actualizarPassword($id, $passwordHash) {
+    $query = "UPDATE " . $this->table . " SET password_hash = :password_hash WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':password_hash', $passwordHash);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
 }
