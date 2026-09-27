@@ -15,19 +15,80 @@ $productos = $controller->listarTodos();
 ?>
 
 <style>
-  .hero {
-    background: var(--bg-hero); display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; padding: 60px 48px 40px; gap: 40px;
-  }
-  .hero-text .eyebrow { color: var(--blue-light); font-style: italic; font-size: 1rem; margin-bottom: 12px; }
-  .hero-text h1 { font-size: 2.6rem; font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
-  .hero-text p { color: var(--text-gray); font-size: 1rem; max-width: 420px; margin-bottom: 28px; line-height: 1.5; }
-  .hero-image {
-    background: rgba(255,255,255,0.03); border: 1px dashed var(--text-gray); border-radius: 12px;
-    min-height: 320px; display: flex; align-items: center; justify-content: center;
-    color: var(--text-gray); font-size: 0.9rem;
-  }
-  .hero-dots { display: flex; gap: 8px; padding: 0 48px 36px; background: var(--bg-hero); }
+ .hero-carousel {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-hero);
+  height: 650px;
+  flex-shrink: 0;
+}
+
+.hero-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.hero-slide {
+  width: 33.3333%;
+  flex-shrink: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px 40px;
+}
+.hero-text .eyebrow { color: var(--blue-light); font-style: italic; font-size: 1.7rem; margin-bottom: 12px; }
+.hero-text h1 { font-size: 4.3rem; font-weight: 2000; line-height: 1.15; margin-bottom: 20px; }
+.hero-text p { color: var(--text-gray); font-size: 1.25rem; max-width: 420px; margin-bottom: 28px; line-height: 1.5; }
+
+.hero-image {
+  height: 650px;
+  overflow: hidden;
+  align-self: center;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-arrow:hover { background: rgba(0,0,0,0.65); }
+.hero-arrow-prev { left: 16px; }
+.hero-arrow-next { right: 16px; }
+
+.hero-dots { display: flex; gap: 8px; padding: 0 48px 36px; background: var(--bg-hero); }
+.hero-dots .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-gray); opacity: 0.4; cursor: pointer;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+.hero-dots .dot.active { background: var(--blue-light); opacity: 1; }
   .dot { width: 20px; height: 8px; border-radius: 4px; background: var(--text-gray); opacity: 0.4; }
   .dot.active { background: var(--blue-light); opacity: 1; }
 
@@ -165,18 +226,54 @@ $productos = $controller->listarTodos();
 
 </style>
 
-<section class="hero">
-  <div class="hero-text">
-    <p class="eyebrow">Sé mejor, sé tu mismo.</p>
-    <h1>La Mejor Tecnología.<br>Al Mejor Precio.</h1>
-    <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>
+<section class="hero-carousel">
+  <div class="hero-track">
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Sé mejor, sé tu mismo.</p>
+        <h1>La Mejor Tecnología.<br>Al Mejor Precio.</h1>
+        <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>
+        <button class="btn-primary">Conoce más</button>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/FondosPrincipales/HeroTecnologia.jpg" alt="Audífonos y tecnología Vokter" class="hero-img">
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Sé mejor, sé tú misma.</p>
+        <h1>Conjuntos Deportivos<br>Disponibles en Todas las Tallas.</h1>
+        <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>
     <button class="btn-primary">Conoce más</button>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/FondosPrincipales/HeroRopa.jpg" alt="Conjuntos deportivos Vokter" class="hero-img">
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Sé mejor, duerme mejor.</p>
+        <h1>Sábanas <em>Star Home</em><br>con un 100% Algodón</h1>
+        <p>Conoce todo nuestro catálogo en accesorios, diseñados para la comodidad y estilo.</p>
+        <button class="btn-primary">Conoce más</button>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/FondosPrincipales/HeroHogar.jpg" alt="Sábanas Star Home" class="hero-img">      </div>
+    </div>
+
   </div>
-  <div class="hero-image">Imagen del hero (audífonos, smartwatch, iPhone, airpods)</div>
+
+  <button class="hero-arrow hero-arrow-prev" id="hero-prev" aria-label="Hero anterior">&#10094;</button>
+  <button class="hero-arrow hero-arrow-next" id="hero-next" aria-label="Hero siguiente">&#10095;</button>
 </section>
 
-<div class="hero-dots">
-  <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+<div class="hero-dots" id="hero-dots">
+  <span class="dot active" data-index="0"></span>
+  <span class="dot" data-index="1"></span>
+  <span class="dot" data-index="2"></span>
 </div>
 
 <section class="trust-bar">
@@ -287,6 +384,57 @@ if (botonReciente) {
     });
   });
 }
+
+(function() {
+  const track = document.querySelector('.hero-track');
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('#hero-dots .dot');
+  const prevBtn = document.getElementById('hero-prev');
+  const nextBtn = document.getElementById('hero-next');
+  const total = slides.length;
+  let current = 0;
+  let intervalId;
+
+  function irASlide(indice) {
+    current = (indice + total) % total;
+    track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === current);
+    });
+  }
+
+  function siguiente() { irASlide(current + 1); }
+  function anterior() { irASlide(current - 1); }
+
+  function iniciarAutoRotacion() {
+    intervalId = setInterval(siguiente, 6000);
+  }
+
+  function reiniciarAutoRotacion() {
+    clearInterval(intervalId);
+    iniciarAutoRotacion();
+  }
+
+  nextBtn.addEventListener('click', function() {
+    siguiente();
+    reiniciarAutoRotacion();
+  });
+
+  prevBtn.addEventListener('click', function() {
+    anterior();
+    reiniciarAutoRotacion();
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      irASlide(parseInt(dot.dataset.index, 10));
+      reiniciarAutoRotacion();
+    });
+  });
+
+  iniciarAutoRotacion();
+})();
+
 </script>
 
 <?php require_once __DIR__ . '/partials/footer.php'; ?>

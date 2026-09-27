@@ -84,5 +84,9 @@ class ProductoController {
     
     }
 
-    
+     public function listarMasVendidos($limite = 10) {
+        $productos = $this->productoModel->obtenerMasVendidos($limite);
+        $this->agregarImagenesYCalificacion($productos);
+        return $productos;
+    }
 }

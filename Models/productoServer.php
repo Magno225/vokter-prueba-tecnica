@@ -92,6 +92,23 @@ class Producto {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function obtenerMasVendidos($limite = 10) {
+        $query = "SELECT p.*, SUM(df.cantidad) AS total_vendido
+                  FROM detalle_factura df
+                  JOIN facturas f ON df.factura_id = f.id
+                  JOIN estados_pedido ep ON f.estado_id = ep.id
+                  JOIN variantes_producto vp ON df.variante_id = vp.id
+                  JOIN productos p ON vp.producto_id = p.id
+                  WHERE ep.nombre != 'Cancelado'
+                  GROUP BY p.id
+                  ORDER BY total_vendido DESC
+                  LIMIT :limite";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':limite', $limite, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
     
 

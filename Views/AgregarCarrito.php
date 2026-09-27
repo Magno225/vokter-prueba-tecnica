@@ -25,5 +25,9 @@ if ($producto && $varianteId > 0) {
     $carritoController->agregarProducto($_SESSION['usuario_id'], $varianteId, $cantidad, $producto['precio_base']);
 }
 
+if (isset($_POST['comprar_ahora'])) {
+    header('Location: Carrito.php');
+    exit;
+}
 header('Location: producto.php?id=' . $productoId . '&agregado=1');
 exit;

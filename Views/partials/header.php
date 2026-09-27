@@ -138,12 +138,10 @@ if (isset($_SESSION['usuario_id'])) {
     <nav>
       <ul>
         <li><a href="Principal.php">Inicio</a></li>
-        <li><a href="Principal.php">Tienda</a></li>
         <li><a href="Novedades.php">Novedades</a></li>
-        <li><a href="#">Lo más vendido</a></li>
+        <li><a href="LoMasVendido.php">Lo más vendido</a></li>
         <li><a href="#">Lo mejor calificado</a></li>
         <li><a href="Promociones.php">Promociones</a></li>
-        <li><a href="#">Contactos</a></li>      
       </ul>
     </nav>
 
@@ -193,30 +191,22 @@ if (isset($_SESSION['usuario_id'])) {
         <?php endif; ?>
       </a>
 
-    <div class="user-menu">
-  <button class="user-menu-trigger">
-    <img src="../Images/icons/avatar.png " class="nav-icon" alt="icono de usuario/avatar diponible a la vista en el header de la pg.">
-    <span class="user-name">
-      <?php if (isset($_SESSION['usuario_id'])): ?>
-        Hola, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>
-      <?php else: ?>
-        Usuario
-      <?php endif; ?>
-    </span>
-  </button>
-  <div class="user-dropdown">
-    <p class="dropdown-title">Categorías</p>
-    <ul class="dropdown-list">
-      <?php if (isset($_SESSION['usuario_id'])): ?>
-        <li><a href="Perfil.php">Mi perfil</a></li>
-        <li><a href="MisCompras.php">Mis compras</a></li>
-        <li><a href="/projectVokter/Views/Logout.php">Cerrar sesión</a></li>
-      <?php else: ?>
-        <li><a href="/projectVokter/Views/Login.php">Iniciar sesión</a></li>
-      <?php endif; ?>
-      <li><a href="#">Ideal para el hogar</a></li>
-    </ul>
-  </div>
-</div>
+      <div class="user-menu">
+        <button class="user-menu-trigger">
+          <img src="../Images/icons/avatar.png " class="nav-icon" alt="icono de usuario/avatar diponible a la vista en el header de la pg.">
+          <!--<span class="icon-placeholder"></span>-->
+          <span class="user-name">Hola, Alejandro</span>
+        </button>
+        <div class="user-dropdown">
+          <p class="dropdown-title">Categorías</p>
+          <ul class="dropdown-list">
+            <li><a href="MisCompras.php">Mis compras</a></li>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+              <li><a href="Perfil.php">Mi perfil</a></li>
+              <li><a href="/projectVokter/Views/Logout.php">Cerrar sesión</a></li>
+            <?php endif; ?>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>

@@ -351,12 +351,14 @@ require_once __DIR__ . '/partials/header.php';
             <option value="1">1 unidad</option>
           </select>
 
-          <button class="btn-primary btn-full">Comprar ahora</button>
           <form method="POST" action="AgregarCarrito.php" id="form-agregar-carrito">
             <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
             <input type="hidden" name="variante_id" id="input-variante-id" value="">
             <input type="hidden" name="cantidad" id="input-cantidad" value="1">
-            <button type="submit" class="btn-secondary btn-full">Agregar al carrito</button>
+
+            <button type="submit" name="comprar_ahora" class="btn-primary btn-full">Comprar ahora</button>
+            <button type="submit" name="agregar" class="btn-secondary btn-full">Agregar al carrito</button>
+
             <?php if (isset($_GET['agregado']) && $_GET['agregado'] == '1'): ?>
               <p style="color: #16a34a; font-weight: 600; font-size: 0.85rem; margin-bottom: 10px;">
                 ✓ Producto agregado al carrito
