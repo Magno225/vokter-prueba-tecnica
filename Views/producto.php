@@ -279,28 +279,28 @@ require_once __DIR__ . '/partials/header.php';
         <?php else: ?>
           <h3 style="color: red;">¡Sin imagen disponible!</h3>
         <?php endif; ?>
-      </div>
     </div>
+  </div>
 
   <div class="detail-info">
       <span class="badge-new">Nuevo</span>
       <h1><?php echo htmlspecialchars($producto['nombre']); ?></h1>
 
     <div class="price-block">
-    <?php if ($producto['en_promocion']): 
-      $precioDescuento = $producto['precio_base'] * (1 - $producto['descuento_porcentaje'] / 100);
-    ?>
-      <span class="price-old">$<?php echo number_format($producto['precio_base'], 0, ',', '.'); ?> COP</span>
-      <p class="discount-badge">¡Este producto tiene un <?php echo (int) $producto['descuento_porcentaje']; ?>% de descuento!</p>
-      <span class="price-current">$<?php echo number_format($precioDescuento, 0, ',', '.'); ?> COP</span>
-    <?php else: ?>
-      <span class="price-current">$<?php echo number_format($producto['precio_base'], 0, ',', '.'); ?> COP</span>
-    <?php endif; ?>
-  </div> 
+      <?php if ($producto['en_promocion']): 
+        $precioDescuento = $producto['precio_base'] * (1 - $producto['descuento_porcentaje'] / 100);
+      ?>
+        <span class="price-old">$<?php echo number_format($producto['precio_base'], 0, ',', '.'); ?> COP</span>
+       <p class="discount-badge">¡Este producto tiene un <?php echo (int) $producto['descuento_porcentaje']; ?>% de descuento!</p>
+        <span class="price-current">$<?php echo number_format($precioDescuento, 0, ',', '.'); ?> COP</span>
+      <?php else: ?>
+        <span class="price-current">$<?php echo number_format($producto['precio_base'], 0, ',', '.'); ?> COP</span>
+      <?php endif; ?>
+    </div> 
 
       <?php if (!empty($variantes)): ?>
     <div class="color-selector">
-      <p class="selector-label">Color: <strong id="color-seleccionado"><?php echo htmlspecialchars($coloresUnicos[0]); ?></strong></p>
+        p class="selector-label">Color: <strong id="color-seleccionado"><?php echo htmlspecialchars($coloresUnicos[0]); ?></strong></p>
       <div class="color-options">
         <?php foreach ($coloresUnicos as $index => $color): ?>
           <span class="color-dot <?php echo $index === 0 ? 'active' : ''; ?>" 
@@ -339,7 +339,7 @@ require_once __DIR__ . '/partials/header.php';
         <h3>Descripción</h3>
         <p><?php echo htmlspecialchars($producto['descripcion']); ?></p>
       </div>
-  </div>
+    </div>
 
       <div class="detail-purchase">
         <div class="purchase-card">
