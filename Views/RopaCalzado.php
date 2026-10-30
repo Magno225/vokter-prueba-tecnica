@@ -2,6 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require_once __DIR__ . '/partials/header.php';
 require_once __DIR__ . '/../Config/database.php';
 require_once __DIR__ . '/../Controllers/ProductoController.php';
 
@@ -13,7 +14,7 @@ $controller = new ProductoController($db);
 $productos = $controller->listarPorCategoria(2);
 
 $tituloPagina = 'Vokter - Catálogo Ropa y Calzado';
-require_once __DIR__ . '/partials/header.php';
+
 ?>
 
 <style>
@@ -200,7 +201,145 @@ require_once __DIR__ . '/partials/header.php';
   cursor: pointer; transition: color 0.2s ease;
 }
 .sort-option:hover { color: var(--blue-accent); }
+
+ .hero-carousel {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-hero);
+  height: 700px;
+  flex-shrink: 0;
+}
+
+.hero-slide {
+  width: 33.3333%;
+  flex-shrink: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+.hero-image {
+  height: 700px;
+  overflow: hidden;
+  align-self: center;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-arrow:hover { background: rgba(0,0,0,0.65); }
+.hero-arrow-prev { left: 16px; }
+.hero-arrow-next { right: 16px; }
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px 40px;
+}
+
+.btn-primary{
+  background: #0c53e9;
+  color: #ffffff;
+  width: 160px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px; 
+  font-weight: bold; 
+}
+
+.hero-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.hero-text .eyebrow { color: var(--blue-light); font-style: italic; font-size: 1.7rem; margin-bottom: 12px; }
+.hero-text h1 { font-size: 4.3rem; font-weight: 2000; line-height: 1.15; margin-bottom: 20px; }
+.hero-text h2 { font-size: 4.3rem; font-weight: 2000; line-height: 1.15; margin-bottom: 20px; color: var(--text-white); }
+.hero-text p { color: var(--text-gray); font-size: 1.25rem; max-width: 420px; margin-bottom: 28px; line-height: 1.5; }
+
 </style>
+
+<section class="hero-carousel">
+  <div class="hero-track">
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Sé mejor, sé tu mismo.</p>
+        <h1>Conjuntos Deportivos<br>Al Mejor Precio.</h1>
+        <p>Conoce nuestros nuevos conjuntos deportivos disponibles para dama y caballero en todas las tallas.</p>              
+        <a href="Tecnologia.php" class="btn-primary">Conoce más</a>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/PromocionalesRopaCalzado/Sudaderas.jpg" alt="Sudaderas para dama y caballero" class="hero-img">
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">¿Te gusta? ¡Presumelo!</p>
+        <h1>Zapatillas para Dama<br>Nuevo Modelo Disponible.</h1>
+        <p>Conoce las nuevos diseños en calzado para dama, modelos pensados para el rendimiento y estilo.</p>
+        <a href="RopaCalzado.php" class="btn-primary">Conoce más</a>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/PromocionalesRopaCalzado/TenisMujer.jpg" alt="Imagen publicitaria de tenis para dama" class="hero-img">
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Actua, ¡gana!.</p>
+            <h1>Tu proxima aventura <br>¡Te espera!<br>Nuevas botas de Senderismo,<br>Para Hombre</h1>
+            <p>Conoce nuestras nuevo modelo de botas para Senderismo, preparadas para lo que sea.</p>
+        <a href="Hogar.php" class="btn-primary">Conoce más</a>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/PromocionalesRopaCalzado/BotasHombreVerdes.jpg" alt="Botas de senderismo para hombre" class="hero-img">      </div>
+    </div>
+
+      <div class="hero-slide">
+      <div class="hero-text">
+        <p class="eyebrow">Ve por tus metas, ¡Ve por todo!</p>
+        <h1>Conjunto Deportivo <em>Para Dama</em><br>con un 100% Algodón</h1>
+        <p>Conoce todo nuestro catálogo en accesorios, diseñados para la comodidad y estilo.</p>
+        <a href="Hogar.php" class="btn-primary">Conoce más</a>
+      </div>
+      <div class="hero-image">
+        <img src="../Images/Fotos/PromocionalesRopaCalzado/SudaderaMujer.jpg" alt="Sudadera para dama" class="hero-img">      </div>
+    </div>
+
+  </div>
+
+  <button class="hero-arrow hero-arrow-prev" id="hero-prev" aria-label="Hero anterior">&#10094;</button>
+  <button class="hero-arrow hero-arrow-next" id="hero-next" aria-label="Hero siguiente">&#10095;</button>
+</section>
 
 <h1 class="page-heading">Catálogo Ropa y Calzado</h1>
 
@@ -274,6 +413,58 @@ if (botonPrecioBajo) {
     });
   });
 }
+
+(function() {
+  const track = document.querySelector('.hero-track');
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('#hero-dots .dot');
+  const prevBtn = document.getElementById('hero-prev');
+  const nextBtn = document.getElementById('hero-next');
+  const total = slides.length;
+  track.style.width = (total * 100) + '%';
+  slides.forEach(function(s) { s.style.width = (100 / total) + '%'; });
+  let current = 0;
+  let intervalId;
+
+  function irASlide(indice) {
+    current = (indice + total) % total;
+    track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === current);
+    });
+  }
+
+  function siguiente() { irASlide(current + 1); }
+  function anterior() { irASlide(current - 1); }
+
+  function iniciarAutoRotacion() {
+    intervalId = setInterval(siguiente, 6000);
+  }
+
+  function reiniciarAutoRotacion() {
+    clearInterval(intervalId);
+    iniciarAutoRotacion();
+  }
+
+  nextBtn.addEventListener('click', function() {
+    siguiente();
+    reiniciarAutoRotacion();
+  });
+
+  prevBtn.addEventListener('click', function() {
+    anterior();
+    reiniciarAutoRotacion();
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      irASlide(parseInt(dot.dataset.index, 10));
+      reiniciarAutoRotacion();
+    });
+  });
+
+  iniciarAutoRotacion();
+})();
 </script>
 
 <?php require_once __DIR__ . '/partials/footer.php'; ?>

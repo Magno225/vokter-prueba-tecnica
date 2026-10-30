@@ -233,8 +233,8 @@ $productos = $controller->listarTodos();
       <div class="hero-text">
         <p class="eyebrow">Sé mejor, sé tu mismo.</p>
         <h1>La Mejor Tecnología.<br>Al Mejor Precio.</h1>
-        <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>
-        <button class="btn-primary">Conoce más</button>
+        <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>              
+        <a href="Tecnologia.php" class="btn-primary">Conoce más</a>
       </div>
       <div class="hero-image">
         <img src="../Images/Fotos/FondosPrincipales/HeroTecnologia.jpg" alt="Audífonos y tecnología Vokter" class="hero-img">
@@ -246,7 +246,8 @@ $productos = $controller->listarTodos();
         <p class="eyebrow">Sé mejor, sé tú misma.</p>
         <h1>Conjuntos Deportivos<br>Disponibles en Todas las Tallas.</h1>
         <p>Conoce todo nuestro catálogo en accesorios, diseñados para el rendimiento y estilo.</p>
-    <button class="btn-primary">Conoce más</button>
+        <a href="RopaCalzado.php" class="btn-primary">Conoce más</a>
+
       </div>
       <div class="hero-image">
         <img src="../Images/Fotos/FondosPrincipales/HeroRopa.jpg" alt="Conjuntos deportivos Vokter" class="hero-img">
@@ -258,11 +259,14 @@ $productos = $controller->listarTodos();
         <p class="eyebrow">Sé mejor, duerme mejor.</p>
         <h1>Sábanas <em>Star Home</em><br>con un 100% Algodón</h1>
         <p>Conoce todo nuestro catálogo en accesorios, diseñados para la comodidad y estilo.</p>
-        <button class="btn-primary">Conoce más</button>
+        <a href="Hogar.php" class="btn-primary">Conoce más</a>
       </div>
       <div class="hero-image">
         <img src="../Images/Fotos/FondosPrincipales/HeroHogar.jpg" alt="Sábanas Star Home" class="hero-img">      </div>
     </div>
+
+       
+
 
   </div>
 
